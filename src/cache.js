@@ -4,7 +4,7 @@ const Redis = require('ioredis');
 
 var redis, options;
 var defaults = {
-  keyPrefix: 'prod_feedrapp'
+  keyPrefix: 'prod_feedrapp:'
 };
 
 export function connect (opt) {
