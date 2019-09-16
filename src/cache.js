@@ -1,10 +1,10 @@
 // 3rd-party modules
 import _ from 'lodash';
-import Redis from 'redis-fast-driver';
+const Redis = require('ioredis');
 
 var redis, options;
 var defaults = {
-  prefix: 'feedrapp'
+  keyPrefix: 'prod_feedrapp'
 };
 
 export function connect (opt) {
@@ -16,8 +16,7 @@ export function cache (key, value, time = 3600) {
   if (!redis) {
     return;
   }
-
-  redis.rawCall(['SETEX', options.prefix + ':' + key, time, JSON.stringify(value)]);
+  redis.set(key, JSON.stringify(value), "EX", time);
 }
 
 export function getFromCache (key) {
