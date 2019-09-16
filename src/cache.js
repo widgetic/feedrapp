@@ -25,11 +25,12 @@ export function getFromCache (key) {
       return reject();
     }
 
-    redis.rawCall(['GET', options.prefix + ':' + key], (e, d) => {
-      if (e || !d) {
-        return reject(e);
+    redis.get(key, (error, data) => {
+      if (error || !data) {
+        return reject(error);
       }
-      return resolve(JSON.parse(d));
-    });
+      return resolve(JSON.parse(data));
+    })
+
   });
 }

@@ -13,7 +13,7 @@ server.listen(port, '0.0.0.0', function () {
   var address = this.address();
 
   cache.connect({
-  	prefix: process.env.REDIS_PREFIX,
+  	keyPrefix: process.env.REDIS_PREFIX,
   	host: process.env.REDIS_HOST,
   	port: process.env.REDIS_PORT
   });
