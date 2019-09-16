@@ -16,7 +16,7 @@ export function cache (key, value, time = 3600) {
   if (!redis) {
     return;
   }
-  redis.set(key, JSON.stringify(value), "EX", time);
+  redis.set(key, JSON.stringify(value), 'EX', time);
 }
 
 export function getFromCache (key) {
@@ -30,7 +30,6 @@ export function getFromCache (key) {
         return reject(error);
       }
       return resolve(JSON.parse(data));
-    })
-
+    });
   });
 }
